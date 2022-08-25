@@ -1,6 +1,7 @@
 
 import { createAction } from '../../utils/reducer/reducer.utils';
 import Task from '../../types/task';
+import { Action } from '../../types/action';
 import { TASK_ACTION_TYPES } from './task.types';
 
 export const addTask = (task: Task) => {
@@ -18,3 +19,5 @@ export const updateTask = (task: Task) => {
 export const searchTask = (name: string) => {
     return createAction(TASK_ACTION_TYPES.SEARCH_TASK, name);
 };
+
+export type DispatchTaskType = (args: Action) => Action

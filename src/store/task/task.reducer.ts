@@ -17,7 +17,7 @@ const updateTaskFromTasks = (tasks: Task[], taskToUpdate: Task) => {
     return [...filteredTasks, taskToUpdate];
 }
 
-type TaskState = {
+export type TaskState = {
     taskTotal: number;
     isTasksEmpty: boolean;
     tasks: Task[];
@@ -29,10 +29,6 @@ export const initialTaskState: TaskState = {
     isTasksEmpty: true,
     tasks,
     searchTerm: '',
-}
-
-type TaskAction = {
-
 }
 
 export const taskReducer = (state: TaskState = initialTaskState, action: Action) => {

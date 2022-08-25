@@ -1,10 +1,11 @@
-import { AnyARecord } from 'dns';
-import { compose, createStore, applyMiddleware, AnyAction } from 'redux';
-// import logger from 'redux-logger';
+import { compose, createStore, applyMiddleware, Store } from 'redux';
+import { Action } from '../types/action';
+import { TaskState } from './task/task.reducer';
+import logger from 'redux-logger';
 
 import { rootReducer } from './root-reducer';
 
-const loggerMiddleware = (store: any) => (next: (action: any)=>void) => (action: any) => {
+const customLoggerMiddleware = (store: Store<TaskState, Action>) => (next: (action: Action)=>void) => (action: Action) => {
   if (!action.type) {
     return next(action);
   }
@@ -18,8 +19,8 @@ const loggerMiddleware = (store: any) => (next: (action: any)=>void) => (action:
   console.log('RDX> next state: ', store.getState());
 };
 
-const middleWares = [loggerMiddleware];
+const middleWares = [logger]; // [customLoggerMiddleware];
 
 const composedEnhancers = compose(applyMiddleware(...middleWares));
 
-export const store = createStore(rootReducer, undefined, composedEnhancers);
+export const store= createStore(rootReducer, undefined, composedEnhancers);
