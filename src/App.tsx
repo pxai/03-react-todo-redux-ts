@@ -6,7 +6,7 @@ import TaskSearchForm from './TaskSearchForm';
 import './App.css';
 import { selectSearchTerm, selectTasks } from './store/task/task.selector';
 import { addTask, updateTask, removeTask, searchTask } from './store/task/task.actions';
-
+import Task from './types/task';
 
 function App() {
   const tasks = useSelector(selectTasks);
@@ -17,25 +17,25 @@ function App() {
     console.log("Changed List: ", tasks)
   }, [tasks]);
 
-  const handleDelete =(id) => {
+  const handleDelete =(id: number) => {
     dispatch(removeTask(id));
   };
 
-  const handleUpdate = (updatedTask)=> {
+  const handleUpdate = (updatedTask: Task)=> {
     dispatch(updateTask(updatedTask));
   };
 
-  const handleCreate = (name) => {
+  const handleCreate = (name: string) => {
     dispatch(addTask({id: Math.round(10000 * Math.random()), name}))
   };
 
-  const handleSearch = (name) => {
+  const handleSearch = (name: string) => {
     dispatch(searchTask(name))
   };
 
   const filteredTaskList = useMemo( () => {
     console.log("Lets see tasks: ", tasks)
-    return tasks.filter((task) => {
+    return tasks.filter((task: Task) => {
       return task.name.toLowerCase().includes(searchTerm.toLowerCase());
     })
   }, [searchTerm, tasks]);

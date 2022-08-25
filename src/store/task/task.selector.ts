@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const selectTaskReducer = (state) => state.task;
-export const selectSearchTerm = (state) => state.task.searchTerm;
+const selectTaskReducer = (state: any) => state.task;
+export const selectSearchTerm = (state: any) => state.task.searchTerm;
 
 
 export const selectTasks = createSelector(

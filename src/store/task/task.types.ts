@@ -1,0 +1,6 @@
+export enum TASK_ACTION_TYPES {
+    ADD_TASK,
+    REMOVE_TASK,
+    UPDATE_TASK,
+    SEARCH_TASK,
+};
