@@ -1,18 +1,19 @@
 import { useState, ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+import { searchTask } from './store/task/task.actions';
 
-type TaskSearchFormProps = {
-    handleSearch: (name: string) => void;
-};
 
-const TaskSearchForm = ({handleSearch}: TaskSearchFormProps) => {
+const TaskSearchForm = () => {
     const [taskValue, setTaskValue] = useState<string>('');
+    const dispatch = useDispatch();
+
     const onSearch = () => {
-        handleSearch(taskValue);
+        dispatch(searchTask(taskValue));
     };
 
     const onReset = () => {
         setTaskValue('');
-        handleSearch('');
+        dispatch(searchTask(''));
     };
 
     const handleSave = (event: ChangeEvent<HTMLInputElement>) => {

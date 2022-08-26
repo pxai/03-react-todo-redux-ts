@@ -1,4 +1,3 @@
-import { Action } from '../../types/action';
 import Task from '../../types/task';  
 import { TASK_ACTION_TYPES } from '../../store/task/task.types';
 

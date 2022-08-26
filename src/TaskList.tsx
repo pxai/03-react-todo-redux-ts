@@ -3,11 +3,9 @@ import Task from './types/task';
 
 type TaskListProps = {
     tasks: Task[];
-    handleDelete: (id: number) => void;
-    handleUpdate: (task: Task) => void;
 }
 
-const TaskList = ({tasks, handleDelete, handleUpdate}: TaskListProps) => {
+const TaskList = ({tasks}: TaskListProps) => {
     return (
         <div>
             <h1>Tasks</h1>
@@ -15,8 +13,6 @@ const TaskList = ({tasks, handleDelete, handleUpdate}: TaskListProps) => {
                 tasks.map( (task: Task) => <TaskComponent 
                     key={task.id} 
                     task={task} 
-                    handleDelete={handleDelete}
-                    handleUpdate={handleUpdate}
                 />)
             }
         </div>

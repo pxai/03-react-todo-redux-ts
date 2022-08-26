@@ -33,7 +33,7 @@ export const initialTaskState: TaskState = {
 
 export const taskReducer = (state: TaskState = initialTaskState, action: Action) => {
     const {type, payload} = action;
-    console.log("Initial state: ", state, action)
+
     let changedTasks = null;
     switch (type) {
         case TASK_ACTION_TYPES.ADD_TASK:

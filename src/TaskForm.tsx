@@ -1,13 +1,13 @@
 import { useState, ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from './store/task/task.actions';
 
-type TaskFormProps = {
-    handleCreate: (name: string) => void;
-};
-
-const TaskForm = ({handleCreate}: TaskFormProps) => {
+const TaskForm = () => {
     const [taskValue, setTaskValue] = useState<string>('');
+    const dispatch = useDispatch();
+
     const handleSave = () => {
-        handleCreate(taskValue);
+        dispatch(addTask({id: Math.round(10000 * Math.random()), name: taskValue}));
     };
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

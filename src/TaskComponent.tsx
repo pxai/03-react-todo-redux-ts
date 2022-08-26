@@ -1,15 +1,16 @@
 import { useState, ChangeEvent } from "react";
+import { useDispatch } from "react-redux";
 import Task from './types/task';
+import { updateTask, removeTask } from './store/task/task.actions';
 
 type TaskComponentProps = {
     task: Task;
-    handleDelete: (id: number) => void;
-    handleUpdate: (task: Task) => void;
 };
 
-const TaskComponent = ({task, handleDelete, handleUpdate}: TaskComponentProps) => {
+const TaskComponent = ({task}: TaskComponentProps) => {
     const [edit, setEdit] = useState<boolean>(false);
     const [taskValue, setTaskValue] = useState<string>(task.name);
+    const dispatch = useDispatch();
 
     const handleEdit = () => {
         setEdit(true);
@@ -19,26 +20,26 @@ const TaskComponent = ({task, handleDelete, handleUpdate}: TaskComponentProps) =
         setTaskValue(event.target.value);
     };
 
-    const updateTask = () => {
-        handleUpdate({...task, name: taskValue });
+    const updateTaskHandler = () => {
+        dispatch(updateTask({...task, name: taskValue }));
         setEdit(false);
     }
 
-    const deleteTask = () => {
-        handleDelete(task.id);
+    const deleteTaskHandler = () => {
+        dispatch(removeTask(task.id));
     };
 
     return (
         edit ?
             <div>
                 <input type="text" value={taskValue} onChange={setTask}/>
-                <button onClick={updateTask}>Save</button>
+                <button onClick={updateTaskHandler}>Save</button>
             </div>
         :   <div>
                 {task.id}
                 {task.name}
                 <button onClick={handleEdit}>Edit</button>
-                <button onClick={deleteTask}>Delete</button>
+                <button onClick={deleteTaskHandler}>Delete</button>
             </div>
     )
 };
